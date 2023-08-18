@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NAME LIST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #6c2688;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .listaDeNomes li {
+            color: black;
+            font-weight: normal;
+            margin: 5px 0;
+        }
+
+        .listaDeNomes li strong {
+            color: green;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NAME LIST</h1>
+    </header>
+    <div class="container">
+        <label for="nome">Procure por um nome:</label>
+        <input id="nome" placeholder="Enter a name" onkeyup="destacar()" onkeydown="handleKeyDown(event)" />
+        <ol class="listaDeNomes">
+            <li> Sabrina </li>
+            <li> Tiago </li>
+            <li> Leo </li>
+            <li> Theo </li>
+            <li> Pedro </li>
+            <li> Cláudio </li>
+            <li> Cassiano </li>
+        </ol>
+    </div>
+
+    <script>
+        function destacar() {
+            var nome = document.querySelector("#nome").value.toLowerCase();
+            var lista = document.querySelector(".listaDeNomes");
+            var listaDeNomes = lista.querySelectorAll("li");
+
+            if (nome === "") {
+                for (var i = 0; i < listaDeNomes.length; i++) {
+                    listaDeNomes[i].innerHTML = listaDeNomes[i].textContent;
+                }
+                return;
+            }
+
+            for (var i = 0; i < listaDeNomes.length; i++) {
+                var nomeAtual = listaDeNomes[i].textContent.toLowerCase();
+                var li = listaDeNomes[i];
+
+                if (nomeAtual.includes(nome)) {
+                    li.innerHTML = "<strong>" + nomeAtual + "</strong>";
+                } else {
+                    li.innerHTML = nomeAtual;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
